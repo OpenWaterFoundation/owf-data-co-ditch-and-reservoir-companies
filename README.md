@@ -11,16 +11,14 @@ The repository contains the following:
 
 ```text
 .gitignore                      		Git configuration file to ignore files that should not be committed to the repository.
-.gitattributes                  		Git configuration file indicate repository configuration, in particular handling
-												of line-ending and binary files.
-build/
-						Folder used by TSTool to create products for publication.
+.gitattributes                  		Git configuration file indicate repository configuration, in particular handling of line-ending and binary files.
+build/						Folder used by TSTool to create products for publication.
 data/                           		Folder containing data files.
   Colorado-Ditch-Reservoir-Companies.xlsx     	Simple Excel file containing core data.
   Colorado-Ditch-Reservoir-Companies.csv      	The Excel file contents from the DitchReservoirCompany worksheet converted to a csv file, useful for automated processing.
 data-orig/					Folder containing original data files downloaded from agency websites.
-  Business-Entities-in-Colorado.csv			The data file containing original data download from the Colorado Information Marketplace containing Business Entity IDs. 
-  DARCA-Members.csv  					The data file containing the list of Ditch and Reservoir Company Alliance (DARCA) members copied from DARCA's website.
+  Business-Entities-in-Colorado.csv		The data file containing original data download from the Colorado Information Marketplace containing Business Entity IDs. 
+  DARCA-Members.csv  				The data file containing the list of Ditch and Reservoir Company Alliance (DARCA) members copied from DARCA's website.
   doc/
   ?                             		Additional documentation for the dataset.
 analysis/                         		TSTool software command files to process data into useful forms.
@@ -82,10 +80,9 @@ Other worksheets within the workbook contain the following:
 
 The data sources for this dataset are listed below.
 
-* The Business Entity ID is from the [Colorado Information Marketplace](https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h/data) and is a state-assigned identification number.  OWF filtered the dataset based on the words "ditch", "irrigation" and "reservoir".  The dataset was also the source of the EntityStartDate and EntityEndDate data
+* The Business Entity ID is from the [Colorado Information Marketplace](https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h/data) and is a state-assigned identification number.  OWF filtered the dataset based on the words "ditch", "irrigation" and "reservoir".  The dataset was also the source of the EntityStartDate and EntityEndDate data.
 * Over half of the companies have a physical address listed in the dataset, but not latitude/longitude coordinates.  To obtain coordinate data, the dataset was opened in [Google Sheets](https://www.google.com/sheets/about/).  An add-on named Geocode by Awesome Table can take a physical address and convert it to coordinates, as long as the street address, city, state and zip code are provided.
-* The IBCC_Basin column indicates which [Interbasin Compact Committee](http://cwcb.state.co.us/about-us/about-the-ibcc-brts/Pages/main.aspx) basin the company is located in.  To fill this column, OWF first saved the DitchReservoirCompany worksheet in csv format and then opened the file in QGIS to create a point layer of ditch companies.  
-Then a GIS shapefile of the IBCC basins was overlayed onto the point layer.  A shapefile of the basins can be found within the [Colorado Water Conservation Board (CWCB)'s Data Viewer](https://www.coloradodnr.info/h5v/Index.html?viewer=cwcbviewer).  The IBCC Basin layer is within the Admin Boundary category.  All of the ditch companies within a specific basin were then selected and labeled with the basin name.
+* The IBCC_Basin column indicates which [Interbasin Compact Committee](http://cwcb.state.co.us/about-us/about-the-ibcc-brts/Pages/main.aspx) basin the company is located in.  To fill this column, OWF first saved the DitchReservoirCompany worksheet in csv format and then opened the file in QGIS to create a point layer of ditch companies.  Then a GIS shapefile of the IBCC basins was overlayed onto the point layer.  A shapefile of the basins can be found within the [Colorado Water Conservation Board (CWCB)'s Data Viewer](https://www.coloradodnr.info/h5v/Index.html?viewer=cwcbviewer).  The IBCC Basin layer is within the Admin Boundary category.  All of the ditch companies within a specific basin were then selected and labeled with the basin name.
 * The [Ditch and Reservoir Company Alliance](http://www.darca.org/) maintains a list of members on its website.  The list was directly copied from the website and pasted into an Excel spreadsheet.
 * Website URLs were found by manually searching for company websites.
 
