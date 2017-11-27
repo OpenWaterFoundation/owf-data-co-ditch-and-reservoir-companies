@@ -1,0 +1,16 @@
+# Convert agricultural ditch and reservoir company data from Excel to csv format.
+#
+StartLog(LogFile="xlsx-to-csv.TSTool.log")
+#
+#  TSTool is used because it automates the process.
+#  Filter out rows with empty DitchReservoirCompanyName in case there are extra rows.
+SetDebugLevel(LogFileLevel=1)
+ReadTableFromExcel(TableID="DitchCompanies",InputFile="..\data\Colorado-Ditch-Reservoir-Companies.xlsx",Worksheet="DitchReservoirCompany",ExcelColumnNames=FirstRowInRange,ColumnExcludeFilters="DitchReservoirCompanyName:",ExcelDateTimeColumns="EntityStartDate,EntityEndDate",ExcelTextColumns="BusinessEntity_ID")
+SetDebugLevel(ScreenLevel=0,LogFileLevel=0)
+# Reformat EntityStartDate and EntityEndDate columns to delete the time
+FormatTableDateTime(TableID="DitchCompanies",InputColumn="EntityStartDate",DateTimeFormat="%Y-%m-%d",OutputColumn="EntityStartDate")
+FormatTableDateTime(TableID="DitchCompanies",InputColumn="EntityEndDate",DateTimeFormat="%Y-%m-%d",OutputColumn="EntityEndDate")
+WriteTableToDelimitedFile(TableID="DitchCompanies",OutputFile="..\data\Colorado-Ditch-Reservoir-Companies.csv",WriteHeaderComments=False,NaNValue="Blank")
+#
+#
+#
