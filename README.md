@@ -30,44 +30,92 @@ analysis/                         		TSTool software command files to process dat
 
 The core Excel workbook that serves as the master data contains the following data columns within the **DitchReservoirCompany** worksheet.
 
-* **DitchReservoirCompanyName** -- name of the ditch/reservoir company
-* **OWF_ID** -- unique text identifier created by OWF; may be used in the future to link other datasets
+* **DitchReservoirCompanyName** -- name of the ditch/reservoir company; from the Colorado Information Marketplace's [Business Entities in Colorado dataset](https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h/data) 
+* **OWF_ID** -- unique text identifier created by OWF; may be used in the future to link other datasets; see naming conventions described below
 * **OWF_ID_Flag** --  data status of OWF_ID values; see more detail below
-* **BusinessEntity_ID** -- state-assigned identification number for a business entity, from the [Colorado Information Marketplace](https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h/data), to link state datasets
+* **BusinessEntity_ID** -- State-assigned identification number for a business entity, from the Colorado Information Marketplace's [Business Entities in Colorado dataset](https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h/data), to link State datasets.  See Attribution section for explanation of how data were filtered
 * **BusinessEntity_ID_Flag** -- data status of BusinessEntity_ID values; see more detail below
-* **DARCAMember** -- indication of whether the company is a member of the Ditch and Reservoir Company Alliance
-* **EntityStartDate** -- formation date of the company
+* **DARCAMember** -- indication of whether the company is a member of the [Ditch and Reservoir Company Alliance](http://www.darca.org/member-listing/).  OWF manually cross-referenced member names with DitchReservoirCompanyName.
+* **EntityStartDate** -- formation date of the company; from the "Business Entities in Colorado" dataset
 * **EntityStartDate_Flag** -- data status of EntityStartDate values; see more detail below
-* **EntityEndDate** --  dissolution date of company, if applicable
+* **EntityEndDate** --  dissolution date of company, if applicable; from the "Business Entities in Colorado" dataset
 * **EntityEndDate_Flag** -- data status of EntityEndDate values; see more detail below
 * **Ditch_WDID_CSV** -- WDIDs (identifiers for structures such as ditches and reservoirs) of ditches the company is associated with, in comma-separated format (CSV) **TO BE ADDED**
 * **Ditch_WDID_CSV_Flag** -- data status of Ditch_WDID_CSV values; see more detail below **TO BE ADDED**
 * **Reservoir_WDID_CSV** -- WDIDs (identifiers for structures such as ditches and reservoirs) of reservoirs the company is associated with, in comma-separated format (CSV)  **TO BE ADDED**
 * **Reservoir_WDID_CSV_Flag** -- data status of Reservoir_WDID_CSV values; see more detail below  **TO BE ADDED**
-* **Latitude** -- latitude of company's point location in decimal degrees
-* **Longitude** -- longitude of company's point location in decimal degrees
-* **Lat_Long_Flag** -- indication of how latitude and longitude were determined
-* **Municipality** -- municipality in which the ditch/reservoir company is located
-* **Municipality_Flag** -- data status of Municipality values; see more detail below
-* **IBCC_Basin** -- Interbasin Compact Committee (IBCC) basin in which the ditch company is located
-* **IBCC_Basin_Flag** -- indication of how the basin was determined
+* **Latitude** -- latitude of company's point location in decimal degrees; this is typically the company's office and may or may not be near the associated ditches/reservoirs
+* **Longitude** -- longitude of company's point location in decimal degrees; this is typically the company's office and may or may not be near the associated ditches/reservoirs
+* **Lat_Long_Flag** -- indication of how latitude and longitude were determined; G2 = coordinates calculated from the company's physical address using the Geocode by Awesome Table tool in Google Sheets; G3 = Geocode by Awesome Table tool could not corroborate the street address and instead used the general address of the town/city (i.e., the general point location for Steamboat Springs)
+* **Municipality_Office** -- municipality in which the ditch/reservoir company is located
+* **Municipality_Office_Flag** -- data status of Municipality_Office values; see more detail below
+* **Municipality_GNIS_ID** -- Geographic Names Information System ID of the municipality, to link to [Colorado Municipalities](owf-data-co-municipalities) dataset
+* **Municipality_GNIS_ID_Flag** -- data status of Municipality_GNIS_ID values; see more detail below
+* **IBCC_Basin** -- Interbasin Compact Committee (IBCC) basin in which the ditch company is located; typically the infrastructure associated with the company (ditches, reservoirs) is also located in the same basin
+* **IBCC_Basin_Flag** -- indication of how the basin was determined; G1 = basin determined by overlaying ditch company coordinates on IBCC Basin polygon layer in QGIS
 * **Website** -- website URL of the ditch/reservoir company  **TO BE ADDED**
 * **Website_Flag** -- data status of Website values; see more detail below  **TO BE ADDED**
 * **Comment** -- any other information about the ditch/reservoir company
 
+Column names are taken from original sources if possible.  For clarity and attribution, agency abbreviations may be added to the original column name.  Column name length is not restricted, therefore, some data representations such as Esri shapefiles may contain truncated column names.  In such cases, alternative formats such as GeoJSON are recommended.
+
+Descriptions of data columns are also provided in the **Notes** worksheet within the workbook.  This worksheet also details how the original data were downloaded and where to find those files.
+
+#### Naming Conventions for OWF_ID ####
+The following naming conventions are used to create OWF_IDs.  Note that for the most part, D=Ditch, I=Irrigation/Irrigating, L=Lateral, R=Reservoir, C=Company.
+* CDC = Canal and Ditch Company
+* CRC = Canal and Reservoir Company
+* DA = Ditch Association
+* DC = Ditch Company
+* DLC = Ditch and Lateral Company
+* DMC = Ditch and Manufacturing Company
+* DRC = Ditch and Reservoir Company
+* DWC = Ditch and Water Company
+* IA = Irrigators Association
+* IC = Irrigation/Irrigating Company
+* IDC = Irrigating Ditch Company
+* IMD = Irrigation and Manufacturing Ditch
+* LA = Lateral Association
+* LC = Lateral Company
+* LDA = Lateral Ditch Association
+* LDC = Lateral Ditch Company
+* LDRC = Lateral Ditch and Reservoir Company
+* LIC = Lateral and Irrigation/Irrigating Company
+* LRC = Lateral and Reservoir Company
+* PC = Pipeline Company
+* RA = Reservoir Association
+* RC = Reservoir Company
+* RCC = Reservoir and Canal Company
+* RDC = Reservoir and Ditch Company
+* RFC = Reservoir and Fish Company
+* RIC = Reservoir and Irrigation Company
+* SA = Shareholders Association
+* UA = Users Association
+* WU = Water Users
+* WC = Water Company
+
+* Ag = Agricultural
+* Ave = Avenue
+* Crk = Creek
+* Mtn = Mountain
+* Rd = Road
+* Res = Reservoir
+* Spgs = Springs
+* Vly = Valley
+* Ft = Fort
+
+#### Data Flags ####
 For many data columns, a second column of the same name with the word "Flag" added to the column name is present.  These columns are an indication of data status as it relates to missing data.  The following conventions are used:
 * G = Value is known/good.  
-* g = Value is estimated (but good).  The associated cell is also highlighted in yellow.
-* N = Value is not applicable for the provider and a blank cell is expected.
+* g = Value is estimated (but good).  The associated cell is also highlighted in yellow. 
+* N = Value is not applicable and a blank cell is expected.
 * M = Value is known to be missing in original source and therefore a blank cell indicates that a value cannot be provided.
 * m = Value is estimated to be missing.  The associated cell is also highlighted in gray.
 * z = Value is unable to be confirmed.  A value is possible but cannot be confirmed one way or the other.  The associated cell is also highlighted in orange.
 * x = OWF has not made an attempt to populate the cell at this time.  The value is missing because OWF has not attempted to find the value.  The associated cell is also highlighted in black.
+*Note that colors are visible only in xlsx files and not csv files.*
 
-Column names are taken from original sources if possible.  For clarity and attribution, agency abbreviations may be added to the original column name.  Column name length is not restricted, therefore, some data representations such as Esri shapefiles may contain truncated column names.  In such cases, alternative formats such as GeoJSON are recommended.
-
-Descriptions of identifiers are also provided in the **Notes** worksheet within the workbook.  This worksheet also details how the original data were downloaded and where to find those files.
-
+Single-character flags may also be followed with a number, as in G1.  These flags are specific to certain columns and are detailed above in the descriptions of the data columns.  
 
 Other worksheets within the workbook contain the following:
 
@@ -76,21 +124,26 @@ Other worksheets within the workbook contain the following:
 * **Metadata_DitchReservoirCompany** worksheet serves as the metadata for data columns in the **DitchReservoirCompany** worksheet.
 
 
+### Colorado-Ditch-Reservoir-Companies.csv Contents ###
+
+This file is the **DitchReservoirCompany** worksheet saved in csv format.  To use this file, **do not** first open in Excel, because IDs that contain leading zeroes will not show those zeroes.  Instead, import the file into a blank Excel file by selecting Data/Get External Data/From Text.
+
+
 ## Attribution ##
 
 The data sources for this dataset are listed below.
 
-* The Business Entity ID is from the [Colorado Information Marketplace](https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h/data) and is a state-assigned identification number.  OWF filtered the dataset based on the words "ditch", "irrigation" and "reservoir".  The dataset was also the source of the EntityStartDate and EntityEndDate data.
+* DitchReservoirCompanyName and BusinessEntity_ID are from the Colorado Information Marketplace's [Business Entities in Colorado dataset](https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h/data).  The BusinessEntity_ID is a State-assigned identification number.  OWF filtered the dataset based on the words "ditch", "irrigation" and "reservoir" and exported the results to CSV files.  The combined CSV file can be found [here](https://github.com/OpenWaterFoundation/owf-data-co-ditch-and-reservoir-companies/blob/master/data-orig/Business-Entities-in-Colorado.csv).  The dataset was also the source of the EntityStartDate, EntityEndDate and Municipality data columns.
 * Over half of the companies have a physical address listed in the dataset, but not latitude/longitude coordinates.  To obtain coordinate data, the dataset was opened in [Google Sheets](https://www.google.com/sheets/about/).  An add-on named Geocode by Awesome Table can take a physical address and convert it to coordinates, as long as the street address, city, state and zip code are provided.
 * The IBCC_Basin column indicates which [Interbasin Compact Committee](http://cwcb.state.co.us/about-us/about-the-ibcc-brts/Pages/main.aspx) basin the company is located in.  To fill this column, OWF first saved the DitchReservoirCompany worksheet in csv format and then opened the file in QGIS to create a point layer of ditch companies.  Then a GIS shapefile of the IBCC basins was overlayed onto the point layer.  A shapefile of the basins can be found within the [Colorado Water Conservation Board (CWCB)'s Data Viewer](https://www.coloradodnr.info/h5v/Index.html?viewer=cwcbviewer).  The IBCC Basin layer is within the Admin Boundary category.  All of the ditch companies within a specific basin were then selected and labeled with the basin name.
-* The [Ditch and Reservoir Company Alliance](http://www.darca.org/) maintains a list of members on its website.  The list was directly copied from the website and pasted into an Excel spreadsheet.
+* The [Ditch and Reservoir Company Alliance](http://www.darca.org/member-listing/) maintains a list of members on its website.  The list was directly copied from the website and pasted into an [Excel](https://github.com/OpenWaterFoundation/owf-data-co-ditch-and-reservoir-companies/blob/master/data-orig/DARCA-Members.csv) spreadsheet.
 * Website URLs were found by manually searching for company websites.
 
 
 ## Data Workflow ##
 
 This dataset was first created by downloading the "Business Entities in Colorado" dataset from the Colorado Information Marketplace.  Data were filtered to only include entities with the words "ditch", "irrigation" and "reservoir" in the entity name.
-Further filtering was then required to eliminate entities that were landscaping companies "i.e., "X Irrigation and Landscaping Company".  Each entity has a state-assigned identification number, which OWF is referring to as BusinessEntity_ID.
+Further filtering was then required to eliminate entities that were landscaping companies "i.e., "X Irrigation and Landscaping Company".  Each entity has a State-assigned identification number, which OWF is referring to as BusinessEntity_ID.
 Other data columns that come from this dataset include EntityStartDate, EntityEndDate and Municipality.  OWF created a unique text identifier (OWF_ID) that may be used in the future to link additional datasets.  OWF manually cross-referenced DitchReservoirCompanyName with the DARCA-Members.csv dataset.  
 From here, the general workflow is as follows:
 1. Data flags are created for many of the data columns that indicate data status as described above.
@@ -109,6 +162,10 @@ identifiers and can be used to link to this dataset to provide information about
 The Excel or csv files can be used as tabular datasets as is, to create filtered lists or to link to other datasets.  Data-processing software such as TSTool can be used to link this dataset to other datasets.  Datasets can be used within GIS software to create maps.
 
 The format and contents of the dataset will change over time.  It is recommended to save a copy of the dataset.
+
+## Disclaimer ##
+
+OWF has attempted to create a complete statewide dataset of ditch and reservoir companies.  However, this dataset is likely incomplete due to limitations in input datasets.  OWF will attempt to fill data gaps as the dataset is used for analysis and funding allows for more data review.  OWF provides no guarantee as to the accuracy of the data.  **Use this dataset at your own risk.**  OWF welcomes feedback to improve the dataset.
 
 ## License ##
 
