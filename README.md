@@ -113,6 +113,7 @@ For many data columns, a second column of the same name with the word "Flag" add
 * m = Value is estimated to be missing.  The associated cell is also highlighted in gray.
 * z = Value is unable to be confirmed.  A value is possible but cannot be confirmed one way or the other.  The associated cell is also highlighted in orange.
 * x = OWF has not made an attempt to populate the cell at this time.  The value is missing because OWF has not attempted to find the value.  The associated cell is also highlighted in black.
+
 *Note that colors are visible only in xlsx files and not csv files.*
 
 Single-character flags may also be followed with a number, as in G1.  These flags are specific to certain columns and are detailed above in the descriptions of the data columns.  
