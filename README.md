@@ -10,20 +10,19 @@ OWF has created and is maintaining this dataset to facilitate work on various da
 The repository contains the following:
 
 ```text
-.gitignore                      		Git configuration file to ignore files that should not be committed to the repository.
-.gitattributes                  		Git configuration file indicate repository configuration, in particular handling of line-ending and binary files.
-build/						Folder used by TSTool to create products for publication.
-data/                           		Folder containing data files.
-  Colorado-Ditch-Reservoir-Companies.xlsx     	Simple Excel file containing core data.
-  Colorado-Ditch-Reservoir-Companies.csv      	The Excel file contents from the DitchReservoirCompany worksheet converted to a csv file, useful for automated processing.
+analysis/                         		TSTool software command files to process data into useful forms.
+  Process-xlsx-to-csv.TSTool			TSTool command file that processes the core dataset from .xlsx to .csv.
 data-orig/					Folder containing original data files downloaded from agency websites.
   Business-Entities-in-Colorado.csv		The data file containing original data download from the Colorado Information Marketplace containing Business Entity IDs. 
   DARCA-Members.csv  				The data file containing the list of Ditch and Reservoir Company Alliance (DARCA) members copied from DARCA's website.
-  doc/
+data/                           		Folder containing data files.
+  Colorado-Ditch-Reservoir-Companies.xlsx     	Simple Excel file containing core data.
+  Colorado-Ditch-Reservoir-Companies.csv      	The Excel file contents from the DitchReservoirCompany worksheet converted to a csv file, useful for automated processing.
+doc/
   ?                             		Additional documentation for the dataset.
-analysis/                         		TSTool software command files to process data into useful forms.
-  Process-xlsx-to-csv.TSTool			TSTool command file that processes the core dataset from .xlsx to .csv.
-  README.md                     		Explanation of TSTool command files used to process the core data into other products.
+.gitattributes                  		Git configuration file indicate repository configuration, in particular handling of line-ending and binary files.
+.gitignore                      		Git configuration file to ignore files that should not be committed to the repository.
+README.md                     		Explanation of repository contents, data files and sources and TSTool command files used to process the core data into other products.
 ```
 
 ### Colorado-Ditch-Reservoir-Companies.xlsx Contents ###
@@ -157,7 +156,7 @@ From here, the general workflow is as follows:
 ## How to Use the Data ##
 
 The Colorado Ditch and Reservoir Companies dataset provides a statewide list of ditch and reservoir companies.  There are unique identifiers for each company and the dataset allows cross-referencing the identifiers
-so that other datasets can be joined.  For example, the [Colorado Municipal Water Providers dataset](owf-data-co-municipal-water-providers) uses municipal water provider
+so that other datasets can be joined.  For example, the [Colorado Municipal Water Providers dataset](https://www.github.com/OpenWaterFoundation/owf-data-co-municipal-water-providers) uses municipal water provider
 identifiers and can be used to link to this dataset to provide information about water rental programs between ditch companies and water providers.
 
 The Excel or csv files can be used as tabular datasets as is, to create filtered lists or to link to other datasets.  Data-processing software such as TSTool can be used to link this dataset to other datasets.  Datasets can be used within GIS software to create maps.
