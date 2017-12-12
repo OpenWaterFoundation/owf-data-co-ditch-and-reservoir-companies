@@ -30,7 +30,7 @@ README.md                     		Explanation of repository contents, data files a
 The core Excel workbook that serves as the master data contains the following data columns within the **DitchReservoirCompany** worksheet.
 
 * **DitchReservoirCompanyName** -- name of the ditch/reservoir company; from the Colorado Information Marketplace's [Business Entities in Colorado dataset](https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h/data) 
-* **OWF_ID** -- unique text identifier created by OWF; may be used in the future to link other datasets; see naming conventions described below
+* **OWF_ID** -- unique text identifier created by OWF; may be used in the future to link other datasets; see identifier conventions described below
 * **OWF_ID_Flag** --  data status of OWF_ID values; see more detail below
 * **BusinessEntity_ID** -- State-assigned identification number for a business entity, from the Colorado Information Marketplace's [Business Entities in Colorado dataset](https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h/data), to link State datasets.  See Attribution section for explanation of how data were filtered
 * **BusinessEntity_ID_Flag** -- data status of BusinessEntity_ID values; see more detail below
@@ -60,8 +60,8 @@ Column names are taken from original sources if possible.  For clarity and attri
 
 Descriptions of data columns are also provided in the **Notes** worksheet within the workbook.  This worksheet also details how the original data were downloaded and where to find those files.
 
-#### Naming Conventions for OWF_ID ####
-The following naming conventions are used to create OWF_IDs.  Note that for the most part, D=Ditch, I=Irrigation/Irrigating, L=Lateral, R=Reservoir, C=Company.
+#### Identifier Conventions for OWF_ID ####
+The following conventions are used to create OWF_IDs.  Note that for the most part, D=Ditch, I=Irrigation/Irrigating, L=Lateral, R=Reservoir, C=Company.
 * CDC = Canal and Ditch Company
 * CRC = Canal and Reservoir Company
 * DA = Ditch Association
@@ -104,7 +104,7 @@ The following naming conventions are used to create OWF_IDs.  Note that for the 
 * Ft = Fort
 
 #### Data Flags ####
-For many data columns, a second column of the same name with the word "Flag" added to the column name is present.  These columns are an indication of data status as it relates to missing data.  The following conventions are used:
+For many data columns, a second column of the same name with the word "_Flag" added to the column name is present.  These columns are an indication of data status as it relates to missing data.  The following conventions are used:
 * G = Value is known/good.  
 * g = Value is estimated (but good).  The associated cell is also highlighted in yellow. 
 * N = Value is not applicable and a blank cell is expected.
@@ -115,7 +115,7 @@ For many data columns, a second column of the same name with the word "Flag" add
 
 *Note that colors are visible only in xlsx files and not csv files.*
 
-Single-character flags may also be followed with a number, as in G1.  These flags are specific to certain columns and are detailed above in the descriptions of the data columns.  
+Single-character flags may also be followed with a number, as in g1.  These flags are specific to certain columns and are detailed above in the descriptions of the data columns.  
 
 Other worksheets within the workbook contain the following:
 
@@ -150,7 +150,7 @@ From here, the general workflow is as follows:
 2. The data are formatted as a table to allow for data filtering.
 3. The dataset is saved in .xlsx format.
 4. The xlsx-formatted file is opened in TSTool and a short command file (Process-xlsx-to-csv.TSTool) converts the dataset into CSV format.
-5. The xlsx-formatted file is opened in TSTool and a short command file converts the dataset into geoJSON format.  This step is optional and applicable for datasets in which a map will be created or if further processing will occur in GIS application such as QGIS.
+5. The xlsx-formatted file is opened in TSTool and a short command file converts the dataset into GeoJSON format.  This step is optional and applicable for datasets in which a map will be created or if further processing will occur in GIS application such as QGIS.
 
 
 ## How to Use the Data ##
@@ -159,7 +159,7 @@ The Colorado Ditch and Reservoir Companies dataset provides a statewide list of 
 so that other datasets can be joined.  For example, the [Colorado Municipal Water Providers dataset](https://www.github.com/OpenWaterFoundation/owf-data-co-municipal-water-providers) uses municipal water provider
 identifiers and can be used to link to this dataset to provide information about water rental programs between ditch companies and water providers.
 
-The Excel or csv files can be used as tabular datasets as is, to create filtered lists or to link to other datasets.  Data-processing software such as TSTool can be used to link this dataset to other datasets.  Datasets can be used within GIS software to create maps.
+The Excel and csv files can be used as tabular datasets as is, to create filtered lists or to link to other datasets.  Data-processing software such as TSTool can be used to link this dataset to other datasets.  Datasets can be used within GIS software to create maps.
 
 The format and contents of the dataset will change over time.  It is recommended to save a copy of the dataset.
 
