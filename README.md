@@ -10,19 +10,20 @@ OWF has created and is maintaining this dataset to facilitate work on various da
 The repository contains the following:
 
 ```text
-analysis/                         		TSTool software command files to process data into useful forms.
-  Process-xlsx-to-csv.TSTool			TSTool command file that processes the core dataset from .xlsx to .csv.
-data-orig/					Folder containing original data files downloaded from agency websites.
-  Business-Entities-in-Colorado.csv		The data file containing original data download from the Colorado Information Marketplace containing Business Entity IDs. 
-  DARCA-Members.csv  				The data file containing the list of Ditch and Reservoir Company Alliance (DARCA) members copied from DARCA's website.
-data/                           		Folder containing data files.
-  Colorado-Ditch-Reservoir-Companies.xlsx     	Simple Excel file containing core data.
-  Colorado-Ditch-Reservoir-Companies.csv      	The Excel file contents from the DitchReservoirCompany worksheet converted to a csv file, useful for automated processing.
+analysis/                                  TSTool software command files to process data into useful forms.
+  Process-xlsx-to-csv.TSTool               TSTool command file that processes the core dataset from .xlsx to .csv.
+data-orig/                                 Folder containing original data files downloaded from agency websites.
+  Business-Entities-in-Colorado.csv        The data file containing original data download from the Colorado Information Marketplace containing Business Entity IDs. 
+  DARCA-Members.csv                        The data file containing the list of Ditch and Reservoir Company Alliance (DARCA) members copied from DARCA's website.
+  README.md                                Explanation of folder contents, description of data files, and the methodology used to obtain the data and mapping to the joined dataset
+data/                                      Folder containing data files.
+  Colorado-Ditch-Reservoir-Companies.xlsx  Simple Excel file containing core data.
+  Colorado-Ditch-Reservoir-Companies.csv   The Excel file contents from the DitchReservoirCompany worksheet converted to a csv file, useful for automated processing.
 doc/
-  ?                             		Additional documentation for the dataset.
-.gitattributes                  		Git configuration file indicate repository configuration, in particular handling of line-ending and binary files.
-.gitignore                      		Git configuration file to ignore files that should not be committed to the repository.
-README.md                     		Explanation of repository contents, data files and sources and TSTool command files used to process the core data into other products.
+  ?                                        Additional documentation for the dataset.
+.gitattributes                             Git configuration file indicate repository configuration, in particular handling of line-ending and binary files.
+.gitignore                                 Git configuration file to ignore files that should not be committed to the repository.
+README.md                                  Explanation of repository contents, data files and sources and TSTool command files used to process the core data into other products.
 ```
 
 ### Colorado-Ditch-Reservoir-Companies.xlsx Contents ###
@@ -48,7 +49,7 @@ The core Excel workbook that serves as the master data contains the following da
 * **Lat_Long_Flag** -- indication of how latitude and longitude were determined; G2 = coordinates calculated from the company's physical address using the Geocode by Awesome Table tool in Google Sheets; G3 = Geocode by Awesome Table tool could not corroborate the street address and instead used the general address of the town/city (i.e., the general point location for Steamboat Springs)
 * **Municipality_Office** -- municipality in which the ditch/reservoir company is located
 * **Municipality_Office_Flag** -- data status of Municipality_Office values; see more detail below
-* **Municipality_GNIS_ID** -- Geographic Names Information System ID of the municipality, to link to [Colorado Municipalities](owf-data-co-municipalities) dataset
+* **Municipality_GNIS_ID** -- Geographic Names Information System ID of the municipality, to link to [Colorado Municipalities](https://github.com/OpenWaterFoundation/owf-data-co-municipalities) dataset
 * **Municipality_GNIS_ID_Flag** -- data status of Municipality_GNIS_ID values; see more detail below
 * **IBCC_Basin** -- Interbasin Compact Committee (IBCC) basin in which the ditch company is located; typically the infrastructure associated with the company (ditches, reservoirs) is also located in the same basin
 * **IBCC_Basin_Flag** -- indication of how the basin was determined; G1 = basin determined by overlaying ditch company coordinates on IBCC Basin polygon layer in QGIS
@@ -149,7 +150,7 @@ From here, the general workflow is as follows:
 1. Data flags are created for many of the data columns that indicate data status as described above.
 2. The data are formatted as a table to allow for data filtering.
 3. The dataset is saved in .xlsx format.
-4. The xlsx-formatted file is opened in TSTool and a short command file (Process-xlsx-to-csv.TSTool) converts the dataset into CSV format.
+4. The xlsx-formatted file is opened in TSTool and a short command file [(Process-xlsx-to-csv.TSTool)](https://github.com/OpenWaterFoundation/owf-data-co-ditch-and-reservoir-companies/blob/master/analysis/Process-xlsx-to-csv.TSTool) converts the dataset into CSV format.
 5. The xlsx-formatted file is opened in TSTool and a short command file converts the dataset into GeoJSON format.  This step is optional and applicable for datasets in which a map will be created or if further processing will occur in GIS application such as QGIS.
 
 
