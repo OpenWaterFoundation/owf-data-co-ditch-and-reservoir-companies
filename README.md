@@ -5,6 +5,19 @@ This is a foundational dataset that provides unique identifiers and other data f
 The identifiers can be used to link other datasets, such as agricultural ditches and municipal water providers.
 OWF has created and is maintaining this dataset to facilitate work on various data analysis and visualization projects in Colorado.
 
+The following sections provide a summary of the project repository:
+
+* [Repository Contents](#repository-contents)
+* [Attribution](#attribution)
+* [Data Workflow](#data-workflow)
+* [How to Use the Data](#how-to-use-the-data)
+* [Disclaimer](#disclaimer)
+* [License](#license)
+* [Contributing](#contributing)
+* [Maintainers](#maintainers)
+* [Contributors](#contributors)
+
+
 ## Repository Contents ##
 
 The repository contains the following:
